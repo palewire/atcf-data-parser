@@ -25,7 +25,7 @@ From Python, you can download a pandas dataframe:
 import atcf_data_parser
 
 url = "https://ftp.nhc.noaa.gov/atcf/aid_public/aep182023.dat.gz"
-df = atcf_data_parser.get_dataframe()
+df = atcf_data_parser.get_dataframe(url)
 ```
 
 Alternatively, from the command line you can output a CSV to stdout:
