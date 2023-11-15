@@ -1,3 +1,1 @@
-A template for open-source Python software repositories
-
-Instructions for how to get started working with the code can be found in `CONTRIBUTING.md`.
+A Python parser for the a-deck data posted online by the Automated Tropical Cyclone Forecasting System

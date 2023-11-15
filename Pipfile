@@ -26,9 +26,17 @@ sphinxcontrib-napoleon = "*"
 sphinxcontrib-mermaid = "*"
 myst-parser = "*"
 tomli = "*"
+types-retry = "*"
+jupyterlab = "*"
+pytest-vcr = "*"
 
 [packages]
 exceptiongroup = "*"
+click = "*"
+rich = "*"
+pandas = "*"
+requests = "*"
+retry = "*"
 
 [requires]
 python_version = "3.11"

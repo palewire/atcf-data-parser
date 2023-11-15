@@ -46,19 +46,19 @@ def local_version(version):
 
 
 setup(
-    name="your-package-name",  # <--- Your module's name goes here
-    description="your-package-description",  # <--- Your module's description goes here
+    name="atcf-data-parser",
+    description="Parse a-deck data posted online by the Automated Tropical Cyclone Forecasting System",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     author="your name",
     author_email="your@email.com",
-    url="http://www.github.com/your-user-name/your-repo-slug",
+    url="http://www.github.com/palewire/atcf-data-parser",
     project_urls={
-        "Maintainer": "https://github.com/your-user-name",
-        "Source": "https://github.com/your-user-name/your-repo-slug",
-        "Tracker": "https://github.com/your-user-name/your-repo-slug/issues",
+        "Maintainer": "https://github.com/palewire/",
+        "Source": "https://github.com/palewire/atcf-data-parser",
+        "Tracker": "https://github.com/palewire/atcf-data-parser/issues",
     },
-    packages=find_packages(),  # <--- Your module's directory goes here
+    packages=find_packages(),
     setup_requires=["setuptools_scm"],
     use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
     license="MIT",
@@ -71,4 +71,16 @@ setup(
         "Programming Language :: Python :: 3.11",
         "License :: OSI Approved :: MIT License",
     ],
+    install_requires=[
+        "pandas",
+        "rich",
+        "click",
+        "requests",
+        "retry",
+    ],
+    entry_points={
+        "console_scripts": [
+            "atcf-data-parser=atcf_data_parser.cli:cli",
+        ],
+    },
 )

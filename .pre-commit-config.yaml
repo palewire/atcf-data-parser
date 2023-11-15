@@ -8,6 +8,8 @@ repos:
     -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-added-large-files
+        args:
+        - --maxkb=1000
     -   id: check-byte-order-marker
     -   id: check-case-conflict
     -   id: check-json
@@ -16,7 +18,7 @@ repos:
     -   id: check-merge-conflict
 
 -   repo: https://github.com/psf/black
-    rev: 23.10.1
+    rev: 23.11.0
     hooks:
     -   id: black
 
@@ -49,8 +51,9 @@ repos:
         args: [--py37-plus]
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.6.1
+    rev: v1.7.0
     hooks:
     -   id: mypy
         additional_dependencies:
           - types-requests
+          - types-retry
