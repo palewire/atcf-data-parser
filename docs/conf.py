@@ -4,19 +4,32 @@ import sys
 from datetime import datetime
 
 # Insert the parent directory into the path
-sys.path.insert(0, os.path.abspath("../your_source_code"))
+sys.path.insert(0, os.path.abspath("../"))
 
-project = "your-package-name"
+project = "atcf-data-parser"
 year = datetime.now().year
 copyright = f"{year}"
-author = "your-name"
+author = "Ben Welsh"
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-html_theme = "sphinx_rtd_theme"
+html_theme = "alabaster"
 html_baseurl = "/docs/"
 pygments_style = "sphinx"
+html_sidebars = {
+    "**": [
+        # "about.html",
+        # "navigation.html",
+        "relations.html",
+        "searchbox.html",
+    ]
+}
+
+html_static_path = ["_static"]
+html_css_files = [
+    "css/custom.css",
+]
 
 autodoc_member_order = "bysource"
 autodoc_default_options = {
@@ -26,6 +39,7 @@ autodoc_default_options = {
     "undoc-members": True,
     "show-inheritance": True,
 }
+autodoc_mock_imports = ["pytz"]
 
 extensions = [
     "myst_parser",

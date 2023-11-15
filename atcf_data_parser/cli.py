@@ -8,7 +8,7 @@ from atcf_data_parser import get_dataframe, get_gzipped_url
 
 @click.group()
 def cli():
-    """Parse a-deck data posted online by the Automated Tropical Cyclone Forecasting System."""
+    """Parse “a-deck” data posted online by the Automated Tropical Cyclone Forecasting System."""
     pass
 
 
