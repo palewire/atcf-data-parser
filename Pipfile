@@ -37,6 +37,7 @@ rich = "*"
 pandas = "*"
 requests = "*"
 retry = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.11"

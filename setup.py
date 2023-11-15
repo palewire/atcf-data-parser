@@ -73,6 +73,7 @@ setup(
     ],
     install_requires=[
         "pandas",
+        "numpy",
         "rich",
         "click",
         "requests",
