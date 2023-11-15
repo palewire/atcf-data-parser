@@ -31,7 +31,7 @@ df = atcf_data_parser.get_dataframe()
 Alternatively, from the command line you can output a CSV to stdout:
 
 ```bash
-atcf-data-parser https://ftp.nhc.noaa.gov/atcf/aid_public/aep182023.dat.gz
+atcf-data-parser get-comma-delimited-data https://ftp.nhc.noaa.gov/atcf/aid_public/aep182023.dat.gz
 ```
 
 ## Reference
