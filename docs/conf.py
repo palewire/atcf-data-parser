@@ -10,7 +10,6 @@ sys.path.insert(0, os.path.abspath("../"))
 project = "atcf-data-parser"
 year = datetime.now().year
 copyright = f"{year} palewire"
-author = "palewire"
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
