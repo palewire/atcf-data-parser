@@ -49,10 +49,40 @@ A collection of functions for downloading and parsing ATCF data posted to [its p
 A command-line utility for downloading and parsing ATCF data posted to [its public FTP site](https://ftp.nhc.noaa.gov/atcf/aid_public/)
 
 
-```{eval-rst}
-.. click:: atcf_data_parser.cli:cli
-   :prog: atcf-data-parser
-   :nested: full
+```bash
+Usage: atcf-data-parser [OPTIONS] COMMAND [ARGS]...
+
+  Parse “a-deck” data posted online by the Automated Tropical Cyclone
+  Forecasting System.
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  get-comma-delimited-data  Download a comma-delimited file from a URL...
+  get-fixed-width-data      Download a fixed-width file from a URL and..
+```
+
+### get-comma-delimited-data
+
+```bash
+Usage: atcf-data-parser get-comma-delimited-data [OPTIONS] URL
+
+  Download a comma-delimited file from a URL and print its contents.
+
+Options:
+  --help  Show this message and exit.
+```
+
+### get-fixed-width-data
+
+```bash
+Usage: atcf-data-parser get-fixed-width-data [OPTIONS] URL
+
+  Download a fixed-width file from a URL and print its contents.
+
+Options:
+  --help  Show this message and exit.
 ```
 
 ## Links
