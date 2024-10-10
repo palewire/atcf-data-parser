@@ -89,7 +89,7 @@ Options:
 
 - Source: [ftp.nhc.noaa.gov/atcf/aid_public/](https://ftp.nhc.noaa.gov/atcf/aid_public/)
 - Data dictionary: [www.nrlmry.navy.mil/atcf_web/docs/database/new/abdeck.txt](https://www.nrlmry.navy.mil/atcf_web/docs/database/new/abdeck.txt)
-- Model definitions: [ftp.nhc.noaa.gov/atcf/docs/nhc_techlist.dat](https://ftp.nhc.noaa.gov/atcf/docs/nhc_techlist.dat_
+- Model definitions: [ftp.nhc.noaa.gov/atcf/docs/nhc_techlist.dat](https://ftp.nhc.noaa.gov/atcf/docs/nhc_techlist.dat)
 - Code: [github.com/palewire/atcf-data-parser](https://github.com/palewire/atcf-data-parser)
 - Issues: [github.com/palewire/atcf-data-parser/issues](https://github.com/palewire/atcf-data-parser/issues)
 - Packaging: [pypi.org/project/atcf-data-parser](https://pypi.org/project/atcf-data-parser)
