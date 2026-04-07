@@ -51,7 +51,7 @@ jobs:
       - id: type-check
         name: Run type check
         timeout-minutes: 10
-        run: uvx ty check
+        run: uv run --with ty ty check
 
   vulture:
     name: Detect dead code
