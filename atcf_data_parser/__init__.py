@@ -11,13 +11,16 @@ from retry import retry
 
 
 @retry()
-def get_gzipped_url(url: str) -> str:
+def get_gzipped_url(url: str, timeout: int | None = None) -> str:
     """Open a gzipped file from a URL and return its contents as a list of strings.
 
     Parameters
     ----------
     url : str
         URL of the gzipped file.
+    timeout : int or None
+        Maximum number of seconds to wait for the network request.
+        Defaults to None (no timeout).
 
     Returns
     -------
@@ -30,7 +33,7 @@ def get_gzipped_url(url: str) -> str:
     >>> get_gzipped_url(url)
     """
     # Read in the  URL
-    r = requests.get(url)
+    r = requests.get(url, timeout=timeout)
 
     # Unzip the file
     f = io.BytesIO(r.content)
@@ -55,7 +58,7 @@ def get_dataframe(url: str, timeout: int = 30) -> pd.DataFrame:
     url : str
         URL of the gzipped file.
     timeout : int
-        Maximum number of seconds to wait for the parsing to complete.
+        Maximum number of seconds to wait for network requests and parsing.
         Defaults to 30 seconds.
 
     Returns
@@ -79,7 +82,7 @@ def get_dataframe(url: str, timeout: int = 30) -> pd.DataFrame:
     head = requests.head(url, allow_redirects=True, timeout=timeout)
     head.raise_for_status()
 
-    data = get_gzipped_url(url)
+    data = get_gzipped_url(url, timeout=timeout)
 
     def _parse() -> pd.DataFrame:
         return pd.read_fwf(
@@ -174,8 +177,9 @@ def get_dataframe(url: str, timeout: int = 30) -> pd.DataFrame:
         timed_out = True
         future.cancel()
         executor.shutdown(wait=False, cancel_futures=True)
+        unit = "second" if timeout == 1 else "seconds"
         raise TimeoutError(
-            f"read_fwf call timed out after {timeout} seconds"
+            f"read_fwf call timed out after {timeout} {unit}"
         ) from exc
     finally:
         if not timed_out:
