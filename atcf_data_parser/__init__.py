@@ -165,11 +165,18 @@ def get_dataframe(url: str, timeout: int = 30) -> pd.DataFrame:
             ],
         )
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
-        future = executor.submit(_parse)
-        try:
-            return future.result(timeout=timeout)
-        except concurrent.futures.TimeoutError:
-            raise TimeoutError(
-                f"read_fwf call timed out after {timeout} seconds"
-            )
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+    future = executor.submit(_parse)
+    timed_out = False
+    try:
+        return future.result(timeout=timeout)
+    except concurrent.futures.TimeoutError as exc:
+        timed_out = True
+        future.cancel()
+        executor.shutdown(wait=False, cancel_futures=True)
+        raise TimeoutError(
+            f"read_fwf call timed out after {timeout} seconds"
+        ) from exc
+    finally:
+        if not timed_out:
+            executor.shutdown(wait=True)
