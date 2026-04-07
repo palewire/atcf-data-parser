@@ -1,4 +1,5 @@
 """Test the module."""
+import time
 from unittest.mock import patch
 
 import pytest
@@ -17,8 +18,6 @@ def test_get_dataframe():
 
 def test_get_dataframe_timeout():
     """Test that a TimeoutError is raised when read_fwf takes too long."""
-    import time
-
     url = "https://ftp.nhc.noaa.gov/atcf/aid_public/aep182023.dat.gz"
 
     def fake_head(*args, **kwargs):
