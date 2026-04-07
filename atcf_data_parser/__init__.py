@@ -34,6 +34,7 @@ def get_gzipped_url(url: str, timeout: int | None = None) -> str:
     """
     # Read in the  URL
     r = requests.get(url, timeout=timeout)
+    r.raise_for_status()
 
     # Unzip the file
     f = io.BytesIO(r.content)
