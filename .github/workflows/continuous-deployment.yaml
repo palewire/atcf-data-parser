@@ -46,7 +46,7 @@ jobs:
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv sync --extra dev --frozen
+        run: uv sync --extra dev --extra test --frozen
 
       - id: type-check
         name: Run type check
