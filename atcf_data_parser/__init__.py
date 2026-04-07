@@ -1,7 +1,7 @@
 """A Python parser for the a-deck data posted online by the Automated Tropical Cyclone Forecasting System."""
+
 from __future__ import annotations
 
-import concurrent.futures
 import gzip
 import io
 
@@ -58,7 +58,7 @@ def get_dataframe(url: str, timeout: int = 30) -> pd.DataFrame:
     url : str
         URL of the gzipped file.
     timeout : int
-        Maximum number of seconds to wait for network requests and parsing.
+        Maximum number of seconds to wait for network requests.
         Defaults to 30 seconds.
 
     Returns
@@ -68,8 +68,6 @@ def get_dataframe(url: str, timeout: int = 30) -> pd.DataFrame:
 
     Raises
     ------
-    TimeoutError
-        If the parsing takes longer than the specified timeout.
     requests.HTTPError
         If the URL does not exist or returns an HTTP error status.
 
@@ -84,103 +82,85 @@ def get_dataframe(url: str, timeout: int = 30) -> pd.DataFrame:
 
     data = get_gzipped_url(url, timeout=timeout)
 
-    def _parse() -> pd.DataFrame:
-        return pd.read_fwf(
-            io.StringIO(data),
-            colspecs=[
-                (0, 2),
-                (4, 6),
-                (8, 18),
-                (20, 22),
-                (24, 28),
-                (30, 33),
-                (35, 39),
-                (41, 46),
-                (48, 51),
-                (53, 57),
-                (59, 61),
-                (63, 66),
-                (68, 71),
-                (73, 77),
-                (79, 83),
-                (85, 89),
-                (91, 95),
-                (97, 101),
-                (103, 107),
-                (109, 112),
-                (114, 117),
-                (119, 122),
-                (124, 127),
-                (129, 132),
-                (134, 137),
-                (139, 142),
-                (144, 147),
-                (149, 159),
-                (161, 162),
-                (164, 166),
-                (168, 171),
-                (173, 177),
-                (179, 183),
-                (185, 189),
-                (191, 195),
-                (197, 210),
-                (212, 412),
-            ],
-            header=None,
-            names=[
-                "BASIN",
-                "CY",
-                "YYYYMMDDHH",
-                "TECHNUM/MIN",
-                "TECH",
-                "TAU",
-                "LATN/S",
-                "LONE/W",
-                "VMAX",
-                "MSLP",
-                "TY",
-                "RAD",
-                "WINDCODE",
-                "RAD1",
-                "RAD2",
-                "RAD3",
-                "RAD4",
-                "POUTER",
-                "ROUTER",
-                "RMW",
-                "GUSTS",
-                "EYE",
-                "SUBREGION",
-                "MAXSEAS",
-                "INITIALS",
-                "DIR",
-                "SPEED",
-                "STORMNAME",
-                "DEPTH",
-                "SEAS",
-                "SEASCODE",
-                "SEAS1",
-                "SEAS2",
-                "SEAS3",
-                "SEAS4",
-                "USERDEFINED",
-                "USERDATA",
-            ],
-        )
-
-    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
-    future = executor.submit(_parse)
-    timed_out = False
-    try:
-        return future.result(timeout=timeout)
-    except concurrent.futures.TimeoutError as exc:
-        timed_out = True
-        future.cancel()
-        executor.shutdown(wait=False, cancel_futures=True)
-        unit = "second" if timeout == 1 else "seconds"
-        raise TimeoutError(
-            f"read_fwf call timed out after {timeout} {unit}"
-        ) from exc
-    finally:
-        if not timed_out:
-            executor.shutdown(wait=True)
+    return pd.read_fwf(
+        io.StringIO(data),
+        colspecs=[
+            (0, 2),
+            (4, 6),
+            (8, 18),
+            (20, 22),
+            (24, 28),
+            (30, 33),
+            (35, 39),
+            (41, 46),
+            (48, 51),
+            (53, 57),
+            (59, 61),
+            (63, 66),
+            (68, 71),
+            (73, 77),
+            (79, 83),
+            (85, 89),
+            (91, 95),
+            (97, 101),
+            (103, 107),
+            (109, 112),
+            (114, 117),
+            (119, 122),
+            (124, 127),
+            (129, 132),
+            (134, 137),
+            (139, 142),
+            (144, 147),
+            (149, 159),
+            (161, 162),
+            (164, 166),
+            (168, 171),
+            (173, 177),
+            (179, 183),
+            (185, 189),
+            (191, 195),
+            (197, 210),
+            (212, 412),
+        ],
+        header=None,
+        names=[
+            "BASIN",
+            "CY",
+            "YYYYMMDDHH",
+            "TECHNUM/MIN",
+            "TECH",
+            "TAU",
+            "LATN/S",
+            "LONE/W",
+            "VMAX",
+            "MSLP",
+            "TY",
+            "RAD",
+            "WINDCODE",
+            "RAD1",
+            "RAD2",
+            "RAD3",
+            "RAD4",
+            "POUTER",
+            "ROUTER",
+            "RMW",
+            "GUSTS",
+            "EYE",
+            "SUBREGION",
+            "MAXSEAS",
+            "INITIALS",
+            "DIR",
+            "SPEED",
+            "STORMNAME",
+            "DEPTH",
+            "SEAS",
+            "SEASCODE",
+            "SEAS1",
+            "SEAS2",
+            "SEAS3",
+            "SEAS4",
+            "USERDEFINED",
+            "USERDATA",
+        ],
+    )
