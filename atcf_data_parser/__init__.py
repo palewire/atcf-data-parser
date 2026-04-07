@@ -12,7 +12,7 @@ from retry import retry
 
 @retry()
 def get_gzipped_url(url: str, timeout: int | None = None) -> str:
-    """Open a gzipped file from a URL and return its contents as a list of strings.
+    """Open a gzipped file from a URL and return its contents as a strings.
 
     Parameters
     ----------
@@ -25,7 +25,7 @@ def get_gzipped_url(url: str, timeout: int | None = None) -> str:
     Returns
     -------
     str
-        List of strings representing the lines of the file.
+        The file contents as a string.
 
     Examples
     --------
