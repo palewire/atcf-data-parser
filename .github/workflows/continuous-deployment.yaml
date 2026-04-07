@@ -21,8 +21,8 @@ jobs:
         name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pipenv'
+          python-version: "3.11"
+          cache: "pipenv"
 
       - id: install-pipenv
         name: Install pipenv
@@ -50,8 +50,8 @@ jobs:
         name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pipenv'
+          python-version: "3.11"
+          cache: "pipenv"
 
       - id: install-pipenv
         name: Install pipenv
@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ['3.9', '3.10', '3.11']
+        python: ["3.10", "3.11", "3.12"]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -82,8 +82,8 @@ jobs:
         name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '${{ matrix.python }}'
-          cache: 'pipenv'
+          python-version: "${{ matrix.python }}"
+          cache: "pipenv"
 
       - id: install-pipenv
         name: Install pipenv
@@ -112,8 +112,8 @@ jobs:
         name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pipenv'
+          python-version: "3.11"
+          cache: "pipenv"
 
       - id: install-pipenv
         name: Install pipenv
