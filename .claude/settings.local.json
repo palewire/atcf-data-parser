@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pipenv lock:*)"
+      "Bash(pipenv lock:*)",
+      "Bash(uv lock:*)"
     ]
   }
 }
