@@ -34,7 +34,7 @@ dev = [
     "sphinx",
     "sphinx-autobuild",
     "sphinx-click",
-    "sphinx-palewire-theme==0.1.2",
+    "sphinx-palewire-theme==0.1.10",
     "sphinxcontrib-napoleon",
     "sphinxcontrib-mermaid",
     "myst-parser",
